@@ -1,6 +1,36 @@
-var express=require('express')
+var express=require('express');
+
+//multer setup
+
+var multer=require('multer');
+
+var multer=multer();
+
+
 
 app=express();
+
+app.use(multer.array())
+app.use(express.static('public'))
+
+
+
+
+
+//Multipart Data
+
+app.post("/upload",function (req,res){
+    let JSONData=req.body;
+
+    res.send(JSON.stringify(JSONData))
+});
+
+
+//===============================================
+
+//File Upload in Multer
+
+
 
 //post method
 app.post("/sample",function (req,res){
@@ -58,12 +88,19 @@ app.use('/about',function (req,res,next){
 
 //application level middleware joto bar req res hobe totobar e execute hobe
 
+//Application level and Route level Middleware
+
+
+
 app.use(function (req,res,next){
 
     console.log("Hey Im Application level Middleware");
 
     next();
 })
+
+
+//Multipart Data system
 
 
 
