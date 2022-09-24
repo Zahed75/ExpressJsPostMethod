@@ -48,6 +48,26 @@ app.get("/eleven",function (req,res){
 })
 
 
+//route middleware
+
+app.use('/about',function (req,res,next){
+    console.log("Im about middleware");
+    next()
+})
+
+
+//application level middleware joto bar req res hobe totobar e execute hobe
+
+app.use(function (req,res,next){
+
+    console.log("Hey Im Application level Middleware");
+
+    next();
+})
+
+
+
+
 app.listen(8000,function (){
     console.log("Server Run Successfully!")
 })
