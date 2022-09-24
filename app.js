@@ -1,5 +1,6 @@
 var express=require('express');
 
+var app=express();
 //multer setup
 
 var multer=require('multer');
@@ -7,15 +8,15 @@ var multer=require('multer');
 var multer=multer();
 
 
+var bodyParser=require('body-parser');
+
+app.use(bodyParser.json());
+
 
 app=express();
 
 app.use(multer.array())
 app.use(express.static('public'))
-
-
-
-
 
 //Multipart Data
 
@@ -28,7 +29,15 @@ app.post("/upload",function (req,res){
 
 //===============================================
 
-//File Upload in Multer
+
+//parser body
+
+
+app.post("/par",function (req,res){
+    let JSONData=req.body;
+    let JSONString=JSON.stringify(JSONData);
+    res.send(JSONString);
+})
 
 
 
@@ -100,7 +109,9 @@ app.use(function (req,res,next){
 })
 
 
-//Multipart Data system
+//bodyParser
+
+
 
 
 
